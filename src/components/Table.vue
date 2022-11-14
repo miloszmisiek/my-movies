@@ -8,7 +8,7 @@ import { required, between, maxLength } from '@vuelidate/validators'
 const el = ref()
 
 onMounted(() => {
-    axios.get('https://localhost:7151/api/mymovies/download')
+    axios.get('https://localhost:7151/api/mymovies/')
         .then(res => el.value = res.data)
 })
 
@@ -25,6 +25,7 @@ onMounted(() => {
                 <th scope="col">Director</th>
                 <th scope="col">Year</th>
                 <th scope="col">Rate</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -34,6 +35,17 @@ onMounted(() => {
                 <td>{{ item.director }}</td>
                 <td>{{ item.year }}</td>
                 <td>{{ item.rate.toFixed(2) }}</td>
+                <td> <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal" data-title="edit">
+                        Edit
+                    </button>
+
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                        data-title="delete">
+                        Delete
+                        <!-- <font-awesome-icon icon="fas fa-plus" /> -->
+                    </button>
+                </td>
             </tr>
             <!-- <tr>
                 <th scope="row">2</th>
