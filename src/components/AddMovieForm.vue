@@ -1,4 +1,5 @@
 <script setup>
+import { Modal } from "bootstrap"
 import useVuelidate from '@vuelidate/core'
 import { required, between, maxLength } from '@vuelidate/validators'
 import BaseInput from './BaseInput.vue';
@@ -28,9 +29,9 @@ const setRating = (rating) => {
 const submitForm = async () => {
     const result = await v$.value.$validate();
     if (result) {
-        alert("success, form submitted!");
         try {
             await axios.post("https://localhost:7151/api/mymovies/", formData);
+            document.getElementById('close-btn').click()
         } catch (err) {
             if (err.response?.status !== 401) {
                 console.log(err.response.data);

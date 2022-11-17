@@ -30,10 +30,10 @@ const setRating = (rating) => {
 const submitForm = async () => {
     const result = await v$.value.$validate();
     if (result) {
-        alert("success, form submitted!");
         formData.id = props.data.id
         try {
             await axios.put(`https://localhost:7151/api/mymovies/${props.data.id}`, formData);
+            document.getElementById('close-btn').click()
         } catch (err) {
             if (err.response?.status !== 401) {
                 console.log(err.response.data);
