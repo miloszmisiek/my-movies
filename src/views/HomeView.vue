@@ -1,16 +1,18 @@
 <script setup>
-import Modal from '../components/Modal.vue';
+import { ref } from 'vue';
 import Table from '../components/Table.vue';
+
+
+let componentKey = ref(0)
+
+const forceRender = () => {
+  componentKey.value += 1
+}
+
 </script>
 
 <template>
   <main>
-    <Modal />
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      Add
-      <font-awesome-icon icon="plus" />
-    </button>
-    <Table />
+    <Table :key='componentKey' :forceRender="forceRender" />
   </main>
 </template>
