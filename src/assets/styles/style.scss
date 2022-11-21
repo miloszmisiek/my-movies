@@ -1,0 +1,129 @@
+@import url("https://fonts.googleapis.com/css2?family=Special+Elite&family=Syne+Mono&display=swap");
+@im html,
+body,
+main,
+#app {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  padding: 1rem;
+  font-family: "Special Elite", cursive;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+
+.main__title {
+  text-transform: uppercase;
+  margin: 0;
+  padding-top: 30px;
+}
+
+.header__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.fa-bounce:not(:hover) {
+  animation: none;
+}
+
+.fa-shake:not(:hover) {
+  animation: none;
+}
+
+.fa-beat:not(:hover) {
+  animation: none;
+}
+
+.add__movie--icon {
+  margin-top: 5px;
+  padding: 0.5rem;
+  border: 1px solid green;
+  background-color: green;
+  border-radius: 50%;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.table__buttons--top {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.rate__limit {
+  font-size: 0.7rem;
+}
+
+@media screen and (max-width: 706px) {
+
+  .table__buttons--top {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  table {
+    border: 0;
+  }
+
+  table caption {
+    font-size: 1.3em;
+  }
+
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: 0.625em;
+  }
+
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: 0.8em;
+    text-align: right;
+  }
+
+  table td::before {
+    /*
+    * aria-label has no advantage, it won't be read inside a table
+    content: attr(aria-label);
+    */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  table td:last-child {
+    border-bottom: 0;
+  }
+}

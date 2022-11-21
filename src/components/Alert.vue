@@ -14,7 +14,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <div :class="'alert alert-' + props.data.alert + ' ' + props.data.display" role="alert">
+    <div :class="'alert fade show alert-' + props.data.alert + ' ' + props.data.display" role="alert">
         {{ props.data.message }}
     </div>
 </template>

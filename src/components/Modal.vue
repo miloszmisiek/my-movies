@@ -15,7 +15,7 @@ const alertData = reactive({
 })
 
 onMounted(() => {
-    const myModalEl = document.getElementById('exampleModal')
+    const myModalEl = document.getElementById('mainModal')
     myModalEl.addEventListener('hidden.bs.modal', event => {
         props.modalHidden();
     })
@@ -25,8 +25,8 @@ onMounted(() => {
 </script>
 <template>
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <div class="modal fade" id="mainModal" tabindex="-1" aria-labelledby="mainModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <slot name="header" />
