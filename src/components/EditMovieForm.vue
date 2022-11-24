@@ -9,8 +9,8 @@ import axios from 'axios';
 onMounted(() => {
     Object.keys(formData).forEach(key => formData[key] = Object.entries(props.data).find(prop => prop[0] === key)[1])
 })
-const props = defineProps(['data'])
-const emit = defineEmits(['update:formSubmit'])
+const props = defineProps(['data', 'setAlertData'])
+const emit = defineEmits(['formSubmitted'])
 const formData = reactive({
     id: null,
     title: "",
@@ -25,7 +25,7 @@ const rules = {
 }
 const v$ = useVuelidate(rules, formData);
 const setRating = (rating) => {
-    rate = rating;
+    formData.rate = rating;
 }
 const submitForm = async () => {
     const result = await v$.value.$validate();
@@ -34,6 +34,7 @@ const submitForm = async () => {
         try {
             await axios.put(`https://localhost:7151/api/mymovies/${props.data.id}`, formData);
             document.getElementById('close-btn').click()
+            emit('formSubmitted')
         } catch (err) {
             if (err.response?.status !== 401) {
                 console.log(err.response.data);
@@ -55,12 +56,12 @@ const submitForm = async () => {
             {{ error.$message }}
         </div>
         <label for="star-rating">Rate</label>
-        <star-rating v-model:rating="rate" v-bind:increment="0.5" v-bind:max-rating="10" inactive-color="#A9A9A9"
+        <star-rating v-model:rating="rate" v-bind:increment="0.5" v-bind:max-rating="10" animate inactive-color="#A9A9A9"
             active-color="#e4c000" v-bind:star-size="20" @update:rating="setRating" id="star-rating">
         </star-rating>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-success">Save</button>
         </div>
     </form>
 </template>

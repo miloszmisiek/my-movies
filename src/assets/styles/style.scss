@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Special+Elite&family=Syne+Mono&display=swap");
-@im html,
+@import "../node_modules/rfs/scss";
+
+html,
 body,
 main,
 #app {
@@ -8,7 +10,7 @@ main,
 }
 
 body {
-  padding: 1rem;
+  padding: 2rem;
   font-family: "Special Elite", cursive;
 }
 
@@ -34,12 +36,25 @@ body {
   align-items: center;
 }
 
+#star-rating {
+  padding: 0.375rem 0.75rem;
+  margin-right: 0.1rem;
+}
+
+.rate__num {
+  margin-left: 0.1rem;
+}
+
 .spinner {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal-header {
+  color: #fff;
+  background-color: #212529;
 }
 
 .fa-bounce:not(:hover) {
@@ -73,8 +88,12 @@ body {
   font-size: 0.7rem;
 }
 
-@media screen and (max-width: 706px) {
+.delete__msg {
+  text-align: center;
+  @include font-size(1.2rem);
+}
 
+@media screen and (max-width: 748px) {
   .table__buttons--top {
     display: flex;
     justify-content: space-evenly;
@@ -100,12 +119,14 @@ body {
   }
 
   table tr {
-    border-bottom: 3px solid #ddd;
+    border: 1px solid #ddd;
     display: block;
-    margin-bottom: 0.625em;
+    margin-bottom: 1.625em;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
   }
 
   table td {
+    position: relative;
     border-bottom: 1px solid #ddd;
     display: block;
     font-size: 0.8em;
@@ -117,8 +138,11 @@ body {
     * aria-label has no advantage, it won't be read inside a table
     content: attr(aria-label);
     */
+    position: absolute;
+    left: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
     content: attr(data-label);
-    float: left;
     font-weight: bold;
     text-transform: uppercase;
   }

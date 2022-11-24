@@ -12,10 +12,14 @@ const alertData = reactive({
 })
 
 const setAlertData = (alert, display, message, visible) => {
-  alertData.alert = alert;
-  alertData.display = display
-  alertData.message = message
-  alertData.alertVisible = visible
+  setTimeout(() => {
+    alertData.alert = alert;
+    alertData.display = display
+    alertData.message = message
+    alertData.alertVisible = visible
+    window.scrollTo(0, 0);
+  }, 1200)
+
 }
 </script>
 
