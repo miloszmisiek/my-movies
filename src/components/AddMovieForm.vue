@@ -29,7 +29,7 @@ const submitForm = async () => {
   const result = await v$.value.$validate();
   if (result) {
     try {
-      await axios.post("https://localhost:7151/api/mymovies/", formData);
+      await axios.post("https://mymovies-task.azurewebsites.net/", formData);
       document.getElementById("close-btn").click();
       emit("formSubmitted");
     } catch (err) {

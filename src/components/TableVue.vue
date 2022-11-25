@@ -12,7 +12,7 @@ const movies = ref([]);
 
 const fetchMovies = async () => {
   try {
-    const { data } = await axios.get("https://localhost:7151/api/mymovies/");
+    const { data } = await axios.get("https://mymovies-task.azurewebsites.net");
     movies.value = data;
     hasLoaded.value = true;
   } catch (err) {
@@ -25,7 +25,7 @@ const downloadMovies = async () => {
   hasLoaded.value = false;
   try {
     const { data } = await axios.get(
-      "https://localhost:7151/api/mymovies/download"
+      "https://mymovies-task.azurewebsites.net/download"
     );
     const results = data.filter(
       (o1) =>
@@ -35,7 +35,7 @@ const downloadMovies = async () => {
     );
     results.forEach(
       async (obj) =>
-        await axios.post("https://localhost:7151/api/mymovies/", obj)
+        await axios.post("https://mymovies-task.azurewebsites.net/", obj)
     );
     hasLoaded.value = true;
 
@@ -53,9 +53,8 @@ const downloadMovies = async () => {
 };
 
 const deleteMovie = async (id) => {
-  await axios.delete(`https://localhost:7151/api/mymovies/${id}`);
-  document.getElementById("close-btn").click();
-  props.setAlertData("secondary", "block", "Your movie has been deleted", true);
+  await axios.delete(`https://mymovies-task.azurewebsites.net/${id}`);
+  reRender();
 };
 onMounted(() => {
   setTimeout(() => {
@@ -87,91 +86,63 @@ const addMovie = () => {
   modalVar.editMode = false;
 };
 
-const reRender = (add = false) => {
+const reRender = (mode) => {
   document.getElementById("close-btn").click();
   props.forceRender();
-  add
+  mode === "add"
     ? props.setAlertData(
-        "success",
-        "block",
-        "Your movie has been added to the list!",
-        true
-      )
-    : props.setAlertData(
+      "success",
+      "block",
+      "Your movie has been added to the list!",
+      true
+    )
+    : mode === "edit" ?
+      props.setAlertData(
         "success",
         "block",
         "Your movie has been edited.",
         true
-      );
+      )
+      : props.setAlertData(
+        "secondary",
+        "block",
+        "Your movie has been deleted",
+        true
+      )
 };
 </script>
 
 <template>
-  <Modal
-    :data="modalVar.modalData"
-    :editMode="modalVar.editMode"
-    :deleteMode="modalVar.deleteMode"
-    :deleteMovie="deleteMovie"
-    v-model:formSubmit="modalVar.formSubmit"
-  >
+  <Modal :data="modalVar.modalData" :editMode="modalVar.editMode" :deleteMode="modalVar.deleteMode"
+    :deleteMovie="deleteMovie" v-model:formSubmit="modalVar.formSubmit">
     <template v-slot:header>
       <h2 v-if="modalVar.editMode" class="modal-title fs-5" id="mainModalLabel">
         Edit movie
       </h2>
-      <h2
-        v-else-if="modalVar.deleteMode"
-        class="modal-title fs-5"
-        id="mainModalLabel"
-      >
+      <h2 v-else-if="modalVar.deleteMode" class="modal-title fs-5" id="mainModalLabel">
         Delete movie
       </h2>
       <h2 v-else class="modal-title fs-5" id="mainModalLabel">Add movie</h2>
     </template>
     <template v-slot:body>
-      <EditMovieForm
-        :key="modalVar.editData?.id"
-        v-if="modalVar.editMode"
-        :data="modalVar.editData"
-        @formSubmitted="reRender()"
-        :setAlertData="props.setAlertData"
-      />
+      <EditMovieForm :key="modalVar.editData?.id" v-if="modalVar.editMode" :data="modalVar.editData"
+        @formSubmitted="reRender('edit')" :setAlertData="props.setAlertData" />
       <p class="delete__msg" v-else-if="modalVar.deleteMode">
         Are you sure you want to delete movie: <br />
         {{ modalVar.modalData.title.toUpperCase() }}?
       </p>
-      <AddMovieForm
-        v-else
-        @formSubmitted="reRender((add = true))"
-        :setAlertData="props.setAlertData"
-      />
+      <AddMovieForm v-else @formSubmitted="reRender('add')" :setAlertData="props.setAlertData" />
     </template>
   </Modal>
   <div v-if="hasLoaded" class="table-responsive">
     <div class="table__buttons--top">
       <!-- Download Movie Button -->
       <button type="button" @click="downloadMovies" class="btn py-3">
-        <font-awesome-icon
-          icon="cloud-download"
-          size="2xl"
-          class="download__icon text-primary"
-          bounce
-        />
+        <font-awesome-icon icon="cloud-download" size="2xl" class="download__icon text-primary" bounce />
       </button>
       <!-- Add Movie Button -->
-      <button
-        type="button"
-        @click="addMovie"
-        class="btn"
-        data-bs-toggle="modal"
-        data-bs-target="#mainModal"
-      >
-        <font-awesome-icon
-          icon="plus"
-          size="sm"
-          class="add__movie--icon"
-          inverse
-          beat
-        />
+      <button type="button" @click="addMovie" class="btn" data-bs-toggle="modal" data-bs-target="#mainModal">
+        <font-awesome-icon icon="plus" size="sm" class="add__movie--icon" inverse beat />
       </button>
     </div>
     <!-- Table -->
@@ -181,7 +152,7 @@ const reRender = (add = false) => {
         <tr>
           <th v-for="(value, key, idx) of movies[0]" :key="idx" scope="col">
             {{
-              key === "id" ? "#" : key.charAt(0).toUpperCase() + key.slice(1)
+                key === "id" ? "#" : key.charAt(0).toUpperCase() + key.slice(1)
             }}
           </th>
           <th scope="col">Action</th>
@@ -200,42 +171,22 @@ const reRender = (add = false) => {
           <td data-label="Year">{{ item.year }}</td>
           <!-- Rate -->
           <td data-label="Rate">
-            <star-rating
-              :read-only="true"
-              :increment="0.5"
-              :max-rating="1"
-              inactive-color="#e4c000"
-              :star-size="20"
-              :show-rating="false"
-              :inline="true"
-            />
+            <star-rating :read-only="true" :increment="0.5" :max-rating="1" inactive-color="#e4c000" :star-size="20"
+              :show-rating="false" :inline="true" />
             <span class="rate__num">
               {{ item.rate === 10 ? item.rate : item.rate.toFixed(1) }}
-              <span class="rate__limit">/ 10</span></span
-            >
+              <span class="rate__limit">/ 10</span></span>
           </td>
           <!-- Action Buttons -->
           <td data-label="Action" class="justify-content-around">
             <!-- Edit Button -->
-            <button
-              type="button"
-              class="btn text-secondary"
-              data-bs-toggle="modal"
-              data-bs-target="#mainModal"
-              data-bs-title="edit"
-              @click="editModal(item)"
-            >
+            <button type="button" class="btn text-secondary" data-bs-toggle="modal" data-bs-target="#mainModal"
+              data-bs-title="edit" @click="editModal(item)">
               <font-awesome-icon icon="edit" size="lg" shake />
             </button>
             <!-- Delete Button -->
-            <button
-              type="button"
-              class="btn text-danger"
-              @click="openModal(item)"
-              data-bs-title="delete"
-              data-bs-toggle="modal"
-              data-bs-target="#mainModal"
-            >
+            <button type="button" class="btn text-danger" @click="openModal(item)" data-bs-title="delete"
+              data-bs-toggle="modal" data-bs-target="#mainModal">
               <font-awesome-icon icon="trash" size="lg" shake />
             </button>
           </td>

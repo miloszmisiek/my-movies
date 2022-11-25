@@ -38,7 +38,7 @@ const submitForm = async () => {
     formData.id = props.data.id;
     try {
       await axios.put(
-        `https://localhost:7151/api/mymovies/${props.data.id}`,
+        `https://mymovies-task.azurewebsites.net/${props.data.id}`,
         formData
       );
       document.getElementById("close-btn").click();
