@@ -9,6 +9,7 @@ import StarRating from "vue-star-rating";
 const props = defineProps(["forceRender", "extMovies", "setAlertData"]);
 const hasLoaded = ref(false);
 const movies = ref([]);
+const errors = ref({});
 
 const fetchMovies = async () => {
   try {
@@ -16,8 +17,9 @@ const fetchMovies = async () => {
     movies.value = data;
     hasLoaded.value = true;
   } catch (err) {
+    errors.value = err
     console.log(err.response?.data);
-    hasLoaded.value = true;
+    // hasLoaded.value = true;
   }
 };
 
@@ -46,17 +48,23 @@ const downloadMovies = async () => {
       props.setAlertData("warning", "d-block", "No new movies!", true);
     }
   } catch (err) {
-    console.log(err.response?.data);
     hasLoaded.value = true;
+    props.setAlertData("danger", "d-block", `${err.message}`, true);
   }
   props.forceRender();
 };
 
 const deleteMovie = async (id) => {
-  await axios.delete(`https://mymovies-task.azurewebsites.net/${id}`);
-  reRender();
+  try {
+    await axios.delete(`https://mymovies-task.azurewebsites.net/${id}`);
+    reRender();
+  } catch (err) {
+    document.getElementById("close-btn").click();
+    props.setAlertData("danger", "d-block", `${err.message}`, true);
+  }
 };
 onMounted(() => {
+  errors.value = {}
   setTimeout(() => {
     fetchMovies();
   }, 1000);
@@ -146,15 +154,15 @@ const reRender = (mode) => {
       </button>
     </div>
     <!-- Table -->
-    <table class="table table-striped text-center align-middle">
+    <table class="table table-striped text-center align-middle" id="main-table">
       <!-- Table Head -->
       <thead class="table-dark">
         <tr>
-          <th v-for="(value, key, idx) of movies[0]" :key="idx" scope="col">
-            {{
-                key === "id" ? "#" : key.charAt(0).toUpperCase() + key.slice(1)
-            }}
-          </th>
+          <th scope="col">#</th>
+          <th scope="col">Title</th>
+          <th scope="col">Director</th>
+          <th scope="col">Year</th>
+          <th scope="col">Rate</th>
           <th scope="col">Action</th>
         </tr>
       </thead>
@@ -196,6 +204,11 @@ const reRender = (mode) => {
   </div>
   <!-- Spinner Icon -->
   <div v-else class="spinner">
-    <font-awesome-icon icon="fa-solid fa-spinner" spin-pulse size="6x" />
+    <font-awesome-icon v-if="!Object.entries(errors).length" icon="fa-solid fa-spinner" spin-pulse size="6x" />
+    <div v-else>
+      <font-awesome-icon icon="fa-solid fa-sad-tear" size="6x" />
+      <p>{{ errors.message }}</p>
+    </div>
+
   </div>
 </template>

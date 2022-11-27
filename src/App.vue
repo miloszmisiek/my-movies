@@ -23,15 +23,13 @@ const setAlertData = (alert, display, message, visible) => {
 </script>
 
 <template>
-  <Transition>
-    <Alert
-      v-if="alertData.alertVisible"
-      :data="alertData"
-      :setAlertData="setAlertData"
-    />
-  </Transition>
-  <Header />
-  <RouterView :setAlertData="setAlertData" />
+  <article>
+    <Transition>
+      <Alert v-if="alertData.alertVisible " :data="alertData" :setAlertData="setAlertData" />
+    </Transition>
+    <Header />
+    <RouterView :setAlertData="setAlertData" />
+  </article>
 </template>
 
 <style lang="scss">

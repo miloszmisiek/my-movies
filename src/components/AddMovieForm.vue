@@ -3,9 +3,10 @@ import useVuelidate from "@vuelidate/core";
 import { required, between, maxLength } from "@vuelidate/validators";
 import BaseInput from "./BaseInput.vue";
 import StarRating from "vue-star-rating";
-import { reactive, toRefs } from "vue";
+import { reactive, ref, toRefs } from "vue";
 import axios from "axios";
 
+const props = defineProps(["setAlertData"]);
 const emit = defineEmits(["formSubmitted"]);
 
 const formData = reactive({
@@ -29,12 +30,14 @@ const submitForm = async () => {
   const result = await v$.value.$validate();
   if (result) {
     try {
-      await axios.post("https://mymovies-task.azurewebsites.net/", formData);
+      await axios.post("https://mymovies-task.azurewebsites.n/", formData);
       document.getElementById("close-btn").click();
       emit("formSubmitted");
     } catch (err) {
       if (err.response?.status !== 401) {
-        console.log(err.response.data);
+        document.getElementById("close-btn").click();
+        props.setAlertData("danger", "d-block", `${err.message}`, true);
+        console.log(err.message);
       }
     }
   }
@@ -45,39 +48,20 @@ const submitForm = async () => {
   <form @submit.prevent="submitForm()">
     <!-- Title -->
     <BaseInput v-model="title" label="Title" />
-    <div
-      class="alert alert-warning"
-      role="alert"
-      v-for="error in v$.title.$errors"
-      :key="error.$uid"
-    >
+    <div class="alert alert-warning" role="alert" v-for="error in v$.title.$errors" :key="error.$uid">
       {{ error.$message }}
     </div>
     <!-- Director -->
     <BaseInput v-model="director" label="Director" />
     <!-- Year -->
     <BaseInput v-model="year" type="number" label="Year" />
-    <div
-      class="alert alert-warning"
-      role="alert"
-      v-for="error in v$.year.$errors"
-      :key="error.$uid"
-    >
+    <div class="alert alert-warning" role="alert" v-for="error in v$.year.$errors" :key="error.$uid">
       {{ error.$message }}
     </div>
     <!-- Rate -->
     <label for="star-rating">Rate</label>
-    <star-rating
-      v-model:rating="rate"
-      v-bind:increment="0.5"
-      v-bind:max-rating="10"
-      animate
-      inactive-color="#A9A9A9"
-      active-color="#e4c000"
-      v-bind:star-size="20"
-      @update:rating="setRating"
-      id="star-rating"
-    >
+    <star-rating v-model:rating="rate" v-bind:increment="0.5" v-bind:max-rating="10" animate inactive-color="#A9A9A9"
+      active-color="#e4c000" v-bind:star-size="20" @update:rating="setRating" id="star-rating">
     </star-rating>
     <!-- Footer -->
     <div class="modal-footer">

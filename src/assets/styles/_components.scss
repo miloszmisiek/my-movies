@@ -10,6 +10,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 2rem;
 }
 
 // Alert
@@ -47,10 +48,10 @@
 
 // Icons
 .spinner {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .add__movie--icon {
   margin-top: 5px;
@@ -73,6 +74,38 @@
 }
 .fa-beat:not(:hover) {
   animation: none;
+}
+
+// Footer
+.footer__wrapper {
+  position: relative;
+  margin-top: auto;
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: black;
+  color: white;
+}
+
+.rights {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-size: 0.8rem;
+}
+
+// Social Links
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 3.5rem;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 0;
 }
 
 // Table Responsiveness
