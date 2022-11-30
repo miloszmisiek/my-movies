@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import Table from "../components/TableVue.vue";
-import Footer from "../components/Footer.vue";
+import Footer from "../components/FooterVue.vue";
 
 const componentKey = ref(0);
 const props = defineProps(["setAlertData"]);
@@ -13,7 +13,11 @@ const forceRender = () => {
 <template>
   <!-- Main -->
   <main>
-    <Table :key="componentKey" :forceRender="forceRender" :setAlertData="props.setAlertData" />
+    <Table
+      :key="componentKey"
+      :forceRender="forceRender"
+      :setAlertData="props.setAlertData"
+    />
   </main>
   <!-- Footer -->
   <Footer />

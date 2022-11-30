@@ -6,18 +6,15 @@ import Header from "./components/HeaderVue.vue";
 
 const alertData = reactive({
   alert: "warning",
-  display: "d-none",
   message: "Default message",
   alertVisible: false,
 });
 
-const setAlertData = (alert, display, message, visible) => {
+const setAlertData = (alert, message, visible) => {
   setTimeout(() => {
     alertData.alert = alert;
-    alertData.display = display;
     alertData.message = message;
     alertData.alertVisible = visible;
-    window.scrollTo(0, 0);
   }, 1200);
 };
 </script>
@@ -25,7 +22,11 @@ const setAlertData = (alert, display, message, visible) => {
 <template>
   <article>
     <Transition>
-      <Alert v-if="alertData.alertVisible " :data="alertData" :setAlertData="setAlertData" />
+      <Alert
+        v-if="alertData.alertVisible"
+        :data="alertData"
+        :setAlertData="setAlertData"
+      />
     </Transition>
     <Header />
     <RouterView :setAlertData="setAlertData" />

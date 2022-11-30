@@ -5,6 +5,7 @@ main,
   height: 100%;
   width: 100%;
   font-family: "Special Elite", cursive;
+  color: white;
 }
 
 article {
@@ -12,7 +13,19 @@ article {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  background-color: #343a40;
 }
+
+// hr {
+//   max-width: 90%;
+//   margin: 0 auto;
+//   border: 1px solid black;
+//   width: 100%;
+//   background-color: black;
+//   opacity: 1;
+//   margin-top: 1rem;
+//   border-radius: 50%;
+// }
 
 main {
   flex-grow: 1;
@@ -36,6 +49,10 @@ ul {
   list-style: none;
 }
 
-th {
-  cursor: default;
+button {
+  &:focus{
+    outline: none !important;
+    border: none;
+  }
 }
+

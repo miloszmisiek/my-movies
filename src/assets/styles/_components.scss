@@ -1,5 +1,9 @@
 @import "../node_modules/rfs/scss";
 
+header {
+  background-color: black;
+}
+
 // Main Title - App Name
 .main__title {
   text-transform: uppercase;
@@ -10,7 +14,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 2rem;
+  padding: 1rem;
 }
 
 // Alert
@@ -18,10 +22,36 @@
 .v-leave-active {
   transition: opacity 0.5s ease;
 }
-
 .v-enter-from,
 .v-leave-to {
   opacity: 0;
+}
+.alert-fixed {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  border-radius: 0px;
+  text-align: center;
+  z-index: 99999999;
+}
+
+// Table
+table {
+  border: 1px solid;
+  border-color: #212529 !important;
+  border-collapse: collapse !important;
+}
+thead {
+  cursor: default;
+  text-transform: uppercase;
+  th {
+    vertical-align: middle;
+    background-color: black !important;
+  }
+}
+.table > :not(caption) > * > * {
+  border-bottom-width: 0px;
 }
 
 // Star Rating
@@ -39,20 +69,51 @@
 // Modal
 .modal-header {
   color: #fff;
-  background-color: #212529;
+  background-color: black;
+  border-bottom: var(--bs-modal-header-border-width) solid black;
 }
 .delete__msg {
   text-align: center;
   @include font-size(1.2rem);
 }
+.modal-content {
+  background-color: #2c3034;
+}
+.modal-footer {
+  border-top: var(--bs-modal-footer-border-width) solid black;
+}
+
+// No Movies
+.no__movies--text {
+  font-size: 1.5rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.error {
+  color: rgb(220, 53, 69);
+  input {
+    outline: 2px solid rgb(220, 53, 69) !important;
+    animation: shake 0.2s ease-in-out 0s 2;
+    @keyframes shake {
+      0% { margin-left: 0rem; }
+      25% { margin-left: 0.5rem; }
+      75% { margin-left: -0.5rem; }
+      100% { margin-left: 0rem; }
+    }
+  }
+}
 
 // Icons
 .spinner {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
+
 .add__movie--icon {
   margin-top: 5px;
   padding: 0.5rem;
@@ -61,6 +122,11 @@
   border-radius: 50%;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+.download__icon {
+  margin-top: 5px;
+  padding: 0.5rem;
+  filter: drop-shadow(-1px 4px 8px rgba(0, 0, 0, 0.55));
 }
 .table__buttons--top {
   display: flex;
@@ -88,7 +154,6 @@
   background-color: black;
   color: white;
 }
-
 .rights {
   display: flex;
   align-items: center;
@@ -114,6 +179,9 @@
     display: flex;
     justify-content: space-evenly;
   }
+  .table > :not(caption) > * > * {
+    border-bottom-width: 1px;
+  }
   table {
     border: 0;
   }
@@ -131,7 +199,7 @@
     width: 1px;
   }
   table tr {
-    border: 1px solid #ddd;
+    border: 1px solid #212529;
     display: block;
     margin-bottom: 1.625em;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,

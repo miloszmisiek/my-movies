@@ -21,6 +21,7 @@ const alertData = reactive({
   <!-- Modal -->
   <div
     class="modal fade"
+    ref="modal"
     id="mainModal"
     tabindex="-1"
     aria-labelledby="mainModal"

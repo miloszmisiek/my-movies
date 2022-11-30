@@ -1,6 +1,6 @@
 <template>
   <div class="mb-3">
-    <label v-if="label" class="form-label">{{ label }}</label>
+    <label v-if="label" class="form-label" v-bind="$attrs">{{ label }}</label>
     <input
       type="text"
       class="form-control"
