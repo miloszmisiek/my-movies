@@ -31,7 +31,9 @@ const alertData = reactive({
       <div class="modal-content">
         <!-- Modal Header -->
         <div class="modal-header text-uppercase">
+          <!-- Header Slot -->
           <slot name="header" />
+          <!-- Close Button -->
           <button
             type="button"
             class="btn-close btn-close-white"
@@ -42,9 +44,11 @@ const alertData = reactive({
         </div>
         <!-- Modal Body -->
         <div class="modal-body">
+          <!-- Body Slot -->
           <slot name="body" />
+          <!-- Delete Modal Footer -->
           <div v-if="props.deleteMode" class="modal-footer">
-            <!-- Modal Footer -->
+            <!-- Close Button -->
             <button
               type="button"
               class="btn btn-secondary"
@@ -52,6 +56,7 @@ const alertData = reactive({
             >
               Close
             </button>
+            <!-- Delete Button -->
             <button
               @click="
                 props.deleteMovie(props.data.id),

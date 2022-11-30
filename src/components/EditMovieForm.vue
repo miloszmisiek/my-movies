@@ -4,7 +4,7 @@ import { required, between, maxLength } from "@vuelidate/validators";
 import BaseInput from "./BaseInput.vue";
 import StarRating from "vue-star-rating";
 import { nextTick, onMounted, reactive, toRefs } from "vue";
-import axios from "axios";
+import { axiosRes } from "../api/axiosDefaults";
 
 const fillForm = () => {
   Object.keys(formData).forEach(
@@ -38,7 +38,7 @@ const submitForm = async () => {
   if (result) {
     formData.id = props.data.id;
     try {
-      await axios.put(`https://localhost:7151/${props.data.id}`, formData);
+      await axiosRes.put(`${props.data.id}`, formData);
       document.getElementById("close-btn").click();
       emit("formSubmitted");
     } catch (err) {
@@ -75,6 +75,7 @@ onMounted(() => {
       label="Title"
       :class="!!v$.title.$errors.length ? 'error' : undefined"
     />
+    <!-- Title Errors Handler -->
     <div
       class="text-danger mb-2"
       v-for="error in v$.title.$errors"
@@ -99,6 +100,7 @@ onMounted(() => {
       label="Year"
       :class="!!v$.year.$errors.length ? 'error' : undefined"
     />
+    <!-- Year Errors Handler -->
     <div
       class="text-danger mb-2"
       role="alert"
@@ -127,9 +129,11 @@ onMounted(() => {
     </star-rating>
     <!-- Footer -->
     <div class="modal-footer">
+      <!-- Close Button -->
       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
         Close
       </button>
+      <!-- Save Button -->
       <button type="submit" class="btn btn-success">Save</button>
     </div>
   </form>

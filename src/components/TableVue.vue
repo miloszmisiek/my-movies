@@ -1,10 +1,10 @@
 <script setup>
-import axios from "axios";
 import { onMounted, reactive, ref } from "vue";
 import Modal from "./ModalVue.vue";
 import AddMovieForm from "./AddMovieForm.vue";
 import EditMovieForm from "./EditMovieForm.vue";
 import StarRating from "vue-star-rating";
+import { axiosReq, axiosRes } from "../api/axiosDefaults";
 
 const tableHeadings = ["id", "title", "director", "year", "rate", "action"];
 const props = defineProps(["forceRender", "extMovies", "setAlertData"]);
@@ -18,7 +18,7 @@ const editMovieForm = ref(null);
 
 const fetchMovies = async () => {
   try {
-    const { data } = await axios.get("https://localhost:7151/");
+    const { data } = await axiosReq.get();
     movies.value = data?.sort((a, b) => a.id - b.id);
     movies.value.map((m, idx) => (m["idx"] = idx));
     sortColumn.value = Object.keys(movies.value[0])[0];
@@ -33,16 +33,14 @@ const fetchMovies = async () => {
 const downloadMovies = async () => {
   hasLoaded.value = false;
   try {
-    const { data } = await axios.get("https://localhost:7151/download");
+    const { data } = await axiosReq.get("/download");
     const results = data.filter(
       (o1) =>
         !JSON.parse(JSON.stringify(movies.value)).some(
           (o2) => o1.title === o2.title && o1.director === o2.director
         )
     );
-    results.forEach(
-      async (obj) => await axios.post("https://localhost:7151/", obj)
-    );
+    results.forEach(async (obj) => await axiosRes.post("", obj));
     hasLoaded.value = true;
 
     if (results.length) {
@@ -60,7 +58,7 @@ const downloadMovies = async () => {
 
 const deleteMovie = async (id) => {
   try {
-    await axios.delete(`https://localhost:7151/${id}`);
+    await axiosRes.delete(`${id}`);
     reRender();
   } catch (err) {
     document.getElementById("close-btn").click();
@@ -68,10 +66,6 @@ const deleteMovie = async (id) => {
   }
 };
 
-const resetChildForm = () => {
-  addMovieForm.value?.resetForm();
-  editMovieForm.value?.resetForm();
-};
 onMounted(() => {
   errors.value = {};
   setTimeout(() => {
@@ -93,16 +87,16 @@ const openModal = (data) => {
 };
 
 const editModal = (data) => {
-  resetChildForm();
+  editMovieForm.value.resetForm();
   modalVar.deleteMode = false;
   modalVar.editMode = true;
   modalVar.editData = data;
 };
 
 const addMovie = () => {
+  addMovieForm.value.resetForm();
   modalVar.deleteMode = false;
   modalVar.editMode = false;
-  resetChildForm();
 };
 
 const reRender = (mode) => {
@@ -138,6 +132,7 @@ const sortTable = (col) => {
 </script>
 
 <template>
+  <!-- Modal -->
   <Modal
     :data="modalVar.modalData"
     :editMode="modalVar.editMode"
@@ -146,9 +141,11 @@ const sortTable = (col) => {
     v-model:formSubmit="modalVar.formSubmit"
   >
     <template v-slot:header>
+      <!-- Edit Movie Heading -->
       <h2 v-if="modalVar.editMode" class="modal-title fs-5" id="mainModalLabel">
         Edit movie
       </h2>
+      <!-- Delete Movie Heading -->
       <h2
         v-else-if="modalVar.deleteMode"
         class="modal-title fs-5"
@@ -156,9 +153,11 @@ const sortTable = (col) => {
       >
         Delete movie
       </h2>
+      <!-- Add Movie Heading -->
       <h2 v-else class="modal-title fs-5" id="mainModalLabel">Add movie</h2>
     </template>
     <template v-slot:body>
+      <!-- Edit Movie Form -->
       <EditMovieForm
         ref="editMovieForm"
         :key="modalVar.editData?.id"
@@ -167,10 +166,12 @@ const sortTable = (col) => {
         @formSubmitted="reRender('edit')"
         :setAlertData="props.setAlertData"
       />
+      <!-- Delete Form Message -->
       <p class="delete__msg" v-else-if="modalVar.deleteMode">
         Are you sure you want to delete movie: <br />
         {{ modalVar.modalData.title.toUpperCase() }}?
       </p>
+      <!-- Add Movie Form -->
       <AddMovieForm
         ref="addMovieForm"
         v-else
@@ -179,7 +180,9 @@ const sortTable = (col) => {
       />
     </template>
   </Modal>
+  <!-- Movies Fetched Section -->
   <div v-if="hasLoaded" class="table-responsive">
+    <!-- Movies Action Buttons -->
     <div class="table__buttons--top">
       <!-- Download Movie Button -->
       <button type="button" @click="downloadMovies" class="btn py-3">
@@ -214,6 +217,7 @@ const sortTable = (col) => {
     >
       <!-- Table Head -->
       <thead>
+        <!-- Fetch Headings -->
         <tr v-if="!!movies.length">
           <th
             scope="col"
@@ -234,6 +238,7 @@ const sortTable = (col) => {
           </th>
           <th scope="col">Action</th>
         </tr>
+        <!-- No Movies Headings -->
         <tr v-else>
           <th scope="col" v-for="h in tableHeadings" :key="h">
             {{ h }}
@@ -294,6 +299,7 @@ const sortTable = (col) => {
           </td>
         </tr>
       </tbody>
+      <!-- Nothing to Show Message -->
       <div class="no__movies--text" v-else>Nothing to be shown.... yet</div>
     </table>
   </div>

@@ -4,7 +4,7 @@ import { required, between, maxLength } from "@vuelidate/validators";
 import BaseInput from "./BaseInput.vue";
 import StarRating from "vue-star-rating";
 import { nextTick, onMounted, reactive, toRefs } from "vue";
-import axios from "axios";
+import { axiosRes } from "../api/axiosDefaults";
 
 const props = defineProps(["setAlertData"]);
 const emit = defineEmits(["formSubmitted"]);
@@ -17,7 +17,7 @@ const initialState = {
 };
 const yearLimits = [1900, 2200];
 const rules = {
-  title: { required, maxLength: maxLength(3) },
+  title: { required, maxLength: maxLength(200) },
   year: { required, between: between(...yearLimits) },
 };
 const formData = reactive({ ...initialState });
@@ -38,7 +38,7 @@ const submitForm = async () => {
   const result = await v$.value.$validate();
   if (result) {
     try {
-      await axios.post("https://localhost:7151/", formData);
+      await axiosRes.post("", formData);
       document.getElementById("close-btn").click();
       emit("formSubmitted");
     } catch (err) {
@@ -50,7 +50,6 @@ const submitForm = async () => {
     }
   }
 };
-
 defineExpose({
   resetForm,
 });
@@ -67,6 +66,7 @@ onMounted(() => {
       label="Title"
       :class="!!v$.title.$errors.length ? 'error' : undefined"
     />
+    <!-- Title Errors Handler -->
     <div
       class="text-danger mb-2"
       v-for="error in v$.title.$errors"
@@ -91,6 +91,7 @@ onMounted(() => {
       label="Year"
       :class="!!v$.year.$errors.length ? 'error' : undefined"
     />
+    <!-- Year Errors Handler -->
     <div
       class="text-danger mb-2"
       role="alert"
@@ -115,9 +116,11 @@ onMounted(() => {
     </star-rating>
     <!-- Footer -->
     <div class="modal-footer">
+      <!-- Close Button -->
       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
         Close
       </button>
+      <!-- Submit Button -->
       <button type=" submit" class="btn btn-success">Submit</button>
     </div>
   </form>

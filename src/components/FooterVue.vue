@@ -1,8 +1,11 @@
 <template>
   <footer class="mt-auto">
     <div class="footer__wrapper">
+      <!-- Footer Creator -->
       <div class="rights">Created by Milosz Misiek @ 2022</div>
+      <!-- Social Links -->
       <ul class="social-links">
+        <!-- Email Link -->
         <li>
           <a
             href="mailto:milosz.workspace@gmail.com"
@@ -11,6 +14,7 @@
             <font-awesome-icon icon="fa-envelope" size="xl" />
           </a>
         </li>
+        <!-- LinkedIn Link -->
         <li>
           <a
             href="https://www.linkedin.com/in/milosz-misiek/"
@@ -21,6 +25,7 @@
             <font-awesome-icon icon="fa-brands fa-linkedin" size="xl" />
           </a>
         </li>
+        <!-- GitHub Link -->
         <li>
           <a
             href="https://github.com/miloszmisiek"

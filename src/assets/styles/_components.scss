@@ -1,9 +1,5 @@
 @import "../node_modules/rfs/scss";
 
-header {
-  background-color: black;
-}
-
 // Main Title - App Name
 .main__title {
   text-transform: uppercase;
@@ -91,7 +87,6 @@ thead {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
 .error {
   color: rgb(220, 53, 69);
   input {
