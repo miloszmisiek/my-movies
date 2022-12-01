@@ -18,9 +18,13 @@ The app is fully responsive and was tested on different screen sizes.
 The production version can be found [here](https://enchanting-ganache-56f1cf.netlify.app/).
 The production version of the web API endpoint can be found [here](https://mymovies-task.azurewebsites.net/).
 
+The production version uses **[Azure SQL Server](https://azure.microsoft.com/en-gb/services/sql-database/campaign/)** as a database provider.
+
 **Development**
 The front-end repository can be found [here](https://github.com/miloszmisiek/my-movies).
 The backend repository can be found [here](https://github.com/miloszmisiek/mymovies-webapi).
+
+The devolpment version uses **'in memory database'** for testing purpose - built-in feature of EF Core toolkit.
 
 [Back to contents](#contents)
 
