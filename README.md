@@ -56,7 +56,7 @@ The devolpment version uses **'in memory database'** for testing purpose - built
   - [Azure SQLServer](https://azure.microsoft.com/en-gb/services/sql-database/campaign/): was used to build SQL databse for production.
   
 - ### Other tools
-
+  - [Netlify](https://www.netlify.com/): was used to build and host the front-end.
   - [Git](https://git-scm.com/): the version control system used to manage the code.
   - [Vite](https://vitejs.dev/): was used as a frontend development building tool.
   - [GitHub](https://github.com/): used to host the website's source code.
