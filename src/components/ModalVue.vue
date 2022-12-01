@@ -27,7 +27,7 @@ const alertData = reactive({
     aria-labelledby="mainModal"
     aria-hidden="true"
   >
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered" @scroll.passive="onScroll">
       <div class="modal-content">
         <!-- Modal Header -->
         <div class="modal-header text-uppercase">
