@@ -17,7 +17,6 @@ import {
   faChevronCircleDown,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-require('default-passive-events');
 
 const app = createApp(App);
 
