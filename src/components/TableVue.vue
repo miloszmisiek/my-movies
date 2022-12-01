@@ -92,13 +92,13 @@ const editModal = (data) => {
   modalVar.deleteMode = false;
   modalVar.editMode = true;
   modalVar.editData = data;
-  editMovieForm.value.resetForm();
+  editMovieForm.value?.resetForm();
 };
 
 const addMovie = () => {
   modalVar.deleteMode = false;
   modalVar.editMode = false;
-  addMovieForm.value.resetForm();
+  addMovieForm.value?.resetForm();
 };
 
 const reRender = (mode) => {
