@@ -70,6 +70,7 @@ The devolpment version uses **'in memory database'** for testing purpose - built
 - ### NPM packages & components
 
   - [star-rating](https://www.npmjs.com/package/vue-star-rating): was used to implement star rating component.
+  - [default-passive-event](https://github.com/zzarcon/default-passive-events): was used to add passive mode to event listeners.
 
 [Back to contents](#table-of-contents)
 
