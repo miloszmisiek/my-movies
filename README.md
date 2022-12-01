@@ -55,6 +55,7 @@ The devolpment version uses **'in memory database'** for testing purpose - built
   - [Vite](https://vitejs.dev/): was used as a frontend development building tool.
   - [GitHub](https://github.com/): used to host the website's source code.
   - [VSCode](https://code.visualstudio.com/): the IDE used to develop the website.
+  - [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/): version 2022, this IDE was used to build the backend for the project.
   - [Fontawesome](https://fontawesome.com/): was used to implement icons with animation.
   - [Grammarly](https://www.grammarly.com/): was used to check grammar and typo errors.
   - [eslint](https://eslint.org/): ESLint statically analyzes code to quickly find problems. Was used to check any linting errors and warning in the code.
