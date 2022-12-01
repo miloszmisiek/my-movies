@@ -7,7 +7,7 @@
   - [Development](#development)
 - [**Technologies Used**](#technologies-used)
 - [**How to use?**](#how-to-use)
-- [Bugs](#bugs)
+- [**Bugs**](#bugs)
   - [default-passive-events warning](#default-passive-events-warning)
 - [**Credits**](#credits)
 - [**Acknowledgments**](#acknowledgments)
@@ -111,7 +111,7 @@ The devolpment version uses **'in memory database'** for testing purpose - built
 
 [Back to contents](#table-of-contents)
 
-## Bugs
+## **Bugs**
 
 ### default-passive-events warning
 
