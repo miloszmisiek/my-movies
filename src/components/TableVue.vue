@@ -6,7 +6,7 @@ import EditMovieForm from "./EditMovieForm.vue";
 import StarRating from "vue-star-rating";
 import { axiosReq, axiosRes } from "../api/axiosDefaults";
 
-const tableHeadings = ["id", "title", "director", "year", "rate", "action"];
+const tableHeadings = ["#", "title", "director", "year", "rate", "action"];
 const props = defineProps(["forceRender", "extMovies", "setAlertData"]);
 const hasLoaded = ref(false);
 const movies = ref([]);
@@ -20,12 +20,14 @@ const fetchMovies = async () => {
   try {
     const { data } = await axiosReq.get();
     movies.value = data?.sort((a, b) => a.id - b.id);
-    movies.value.map((m, idx) => (m["idx"] = idx));
-    sortColumn.value = Object.keys(movies.value[0])[0];
+    movies.value?.map((m, idx) => (m["idx"] = idx));
+    if (movies.value.length) {
+      sortColumn.value = Object.keys(movies.value[0])[0];
+    }
     hasLoaded.value = true;
   } catch (err) {
     errors.value = err;
-    console.log(err.response?.data);
+    console.log(err);
     hasLoaded.value = true;
   }
 };
@@ -51,7 +53,7 @@ const downloadMovies = async () => {
     }
   } catch (err) {
     hasLoaded.value = true;
-    props.setAlertData("danger", "d-block", `${err.message}`, true);
+    props.setAlertData("danger", `${err.message}`, true);
   }
   props.forceRender();
 };
@@ -87,16 +89,16 @@ const openModal = (data) => {
 };
 
 const editModal = (data) => {
-  editMovieForm.value.resetForm();
   modalVar.deleteMode = false;
   modalVar.editMode = true;
   modalVar.editData = data;
+  editMovieForm.value.resetForm();
 };
 
 const addMovie = () => {
-  addMovieForm.value.resetForm();
   modalVar.deleteMode = false;
   modalVar.editMode = false;
+  addMovieForm.value.resetForm();
 };
 
 const reRender = (mode) => {
@@ -168,8 +170,8 @@ const sortTable = (col) => {
       />
       <!-- Delete Form Message -->
       <p class="delete__msg" v-else-if="modalVar.deleteMode">
-        Are you sure you want to delete movie: <br />
-        {{ modalVar.modalData.title.toUpperCase() }}?
+        Confirm you want to delete the movie: <br /><br />
+        {{ modalVar.modalData.title.toUpperCase() }}
       </p>
       <!-- Add Movie Form -->
       <AddMovieForm
@@ -249,7 +251,7 @@ const sortTable = (col) => {
       <tbody v-if="!!movies.length">
         <tr v-for="item of movies" :key="item.id">
           <!-- Id -->
-          <td data-label="#">{{ item.idx + 1 }}</td>
+          <td data-label="ID">{{ item.idx + 1 }}</td>
           <!-- Title -->
           <td data-label="Title">{{ item.title }}</td>
           <!-- Director -->
@@ -300,20 +302,11 @@ const sortTable = (col) => {
         </tr>
       </tbody>
       <!-- Nothing to Show Message -->
-      <div class="no__movies--text" v-else>Nothing to be shown.... yet</div>
+      <div class="no__movies--text" v-else>Nothing to be shown... yet</div>
     </table>
   </div>
   <!-- Spinner Icon -->
   <div v-else class="spinner">
-    <font-awesome-icon
-      v-if="!Object.entries(errors).length"
-      icon="fa-solid fa-spinner"
-      spin-pulse
-      size="6x"
-    />
-    <div v-else>
-      <font-awesome-icon icon="fa-solid fa-sad-tear" size="6x" />
-      <p>{{ errors.message }}</p>
-    </div>
+    <font-awesome-icon icon="fa-solid fa-spinner" spin-pulse size="6x" />
   </div>
 </template>

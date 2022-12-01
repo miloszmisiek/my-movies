@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const DEV = true;
+const DEV = false;
 const devURL = "https://localhost:7151/";
 const prodURL = "https://mymovies-task.azurewebsites.net/";
 
