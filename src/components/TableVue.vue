@@ -6,7 +6,7 @@ import EditMovieForm from "./EditMovieForm.vue";
 import StarRating from "vue-star-rating";
 import { axiosReq, axiosRes } from "../api/axiosDefaults";
 
-const tableHeadings = ["#", "title", "director", "year", "rate", "action"];
+const tableHeadings = ["id", "title", "director", "year", "rate", "action"];
 const props = defineProps(["forceRender", "extMovies", "setAlertData"]);
 const hasLoaded = ref(false);
 const movies = ref([]);
