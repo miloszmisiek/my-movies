@@ -302,7 +302,7 @@ const sortTable = (col) => {
         </tr>
       </tbody>
       <!-- Nothing to Show Message -->
-      <div class="no__movies--text" v-else>Nothing to be shown... yet</div>
+      <div v-else class="no__movies--text">Nothing to be shown... yet</div>
     </table>
   </div>
   <!-- Spinner Icon -->
