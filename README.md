@@ -7,6 +7,8 @@
   - [Development](#development)
 - [**Technologies Used**](#technologies-used)
 - [**How to use?**](#how-to-use)
+- [Bugs](#bugs)
+  - [default-passive-events warning](#default-passive-events-warning)
 - [**Credits**](#credits)
 - [**Acknowledgments**](#acknowledgments)
 
@@ -56,6 +58,7 @@ The devolpment version uses **'in memory database'** for testing purpose - built
   - [Azure SQLServer](https://azure.microsoft.com/en-gb/services/sql-database/campaign/): was used to build SQL databse for production.
   
 - ### Other tools
+
   - [Netlify](https://www.netlify.com/): was used to build and host the front-end.
   - [Git](https://git-scm.com/): the version control system used to manage the code.
   - [Vite](https://vitejs.dev/): was used as a frontend development building tool.
@@ -109,6 +112,16 @@ The devolpment version uses **'in memory database'** for testing purpose - built
 ![Table Sorting](src/assets/images/table_heading.png)
 
 [Back to contents](#table-of-contents)
+
+## Bugs
+
+### default-passive-events warning
+
+During the development process the warning "Added non-passive event listener to a scroll-blocking <some> event. Consider marking event handler as 'passive' to make the page more responsive." was present every time the modal was opened or the page reloaded. It is caused by using prevent default and not making the listener passive. To solve it the package was installed, but even though the errors regarding the non-passive event listener are gone, the loading warning for the package is present.
+
+It is left because the previous warnings are gone, so the final result is achieved.
+
+![Warning](src/assets/images/warning_console.png)
 
 ## **Credits**
 
