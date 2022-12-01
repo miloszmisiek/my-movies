@@ -28,8 +28,6 @@ The production version uses **[Azure SQL Server](https://azure.microsoft.com/en-
 
 ### Development
 
-The front-end repository can be found [here](https://github.com/miloszmisiek/my-movies).
-
 The backend repository can be found [here](https://github.com/miloszmisiek/mymovies-webapi).
 
 The devolpment version uses **'in memory database'** for testing purpose - built-in feature of EF Core toolkit.
