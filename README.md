@@ -26,7 +26,7 @@ The backend repository can be found [here](https://github.com/miloszmisiek/mymov
 
 The devolpment version uses **'in memory database'** for testing purpose - built-in feature of EF Core toolkit.
 
-[Back to contents](#contents)
+[Back to contents](#table-of-contents)
 
 ## **Technologies Used**
 
@@ -63,7 +63,7 @@ The devolpment version uses **'in memory database'** for testing purpose - built
 
   - [star-rating](https://www.npmjs.com/package/vue-star-rating): was used to implement star rating component.
 
-[Back to contents](#contents)
+[Back to contents](#table-of-contents)
 
 ## **How to use?**
 
@@ -101,21 +101,21 @@ The devolpment version uses **'in memory database'** for testing purpose - built
 
 ![Table Sorting](src/assets/images/table_heading.png)
 
-[Back to contents](#contents)
+[Back to contents](#table-of-contents)
 
 ## **Credits**
 
 1. All fonts come from [Google Fonts](https://fonts.google.com/).
 2. The movie clapper logo comes from [cleanpng.com](https://www.cleanpng.com/png-clapperboard-filmmaking-celebrity-production-compa-6341315/)
 
-[Back to contents](#contents)
+[Back to contents](#table-of-contents)
 
 ## **Acknowledgments**
 
 1. **[Software Studio](https://www.softwarestudio.com.pl/) Recruitment Team** - for giving me a chance to improve my skills by doing this task - regardless of the outcome it was a great experience for self-development. Thank you!
 2. As always big thanks to [Stack Overflow](https://stackoverflow.com/) community for the best bug-solving space ever created!
 
-[Back to contents](#contents)
+[Back to contents](#table-of-contents)
 
 ---
 **<div align='center'>Created by Milosz Misiek</div>**
