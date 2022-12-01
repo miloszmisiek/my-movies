@@ -3,6 +3,8 @@
 ## Table of Contents <!-- omit in toc -->
 
 - [**Overview**](#overview)
+  - [Production](#production)
+  - [Development](#development)
 - [**Technologies Used**](#technologies-used)
 - [**How to use?**](#how-to-use)
 - [**Credits**](#credits)
@@ -10,18 +12,22 @@
 
 ## **Overview**
 
-This project serves as a **Junior Software Developer** recruitment task. It is a simple web application for displaying custom movies list in tabular format. The app allows for full CRUD functionality and allows users to download movies from an external API endpoint [here](https://filmy.programdemo.pl/swagger/index.html).
+This project serves as a **Junior Software Developer** recruitment task for [Software Studio](https://www.softwarestudio.com.pl/). It is a simple web application for displaying custom movies list in tabular format. The app allows for full CRUD functionality and allows users to download movies from an external API endpoint [here](https://filmy.programdemo.pl/swagger/index.html).
 
 The app is fully responsive and was tested on different screen sizes.
 
-**Production**
+### Production
+
 The production version can be found [here](https://enchanting-ganache-56f1cf.netlify.app/).
+
 The production version of the web API endpoint can be found [here](https://mymovies-task.azurewebsites.net/).
 
 The production version uses **[Azure SQL Server](https://azure.microsoft.com/en-gb/services/sql-database/campaign/)** as a database provider.
 
-**Development**
+### Development
+
 The front-end repository can be found [here](https://github.com/miloszmisiek/my-movies).
+
 The backend repository can be found [here](https://github.com/miloszmisiek/mymovies-webapi).
 
 The devolpment version uses **'in memory database'** for testing purpose - built-in feature of EF Core toolkit.
