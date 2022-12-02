@@ -87,6 +87,9 @@ tbody {
   padding: 2rem 0;
   text-align: center;
   @include font-size(1.2rem);
+  span {
+    font-family: "Old Standard TT", serif;
+  }
 }
 .modal-content {
   background-color: #2c3034;

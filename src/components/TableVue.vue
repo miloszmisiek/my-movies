@@ -171,7 +171,7 @@ const sortTable = (col) => {
       <!-- Delete Form Message -->
       <p class="delete__msg" v-else-if="modalVar.deleteMode">
         Confirm you want to delete the movie: <br /><br />
-        {{ modalVar.modalData.title.toUpperCase() }}
+        <span>{{ modalVar.modalData.title.toUpperCase() }}</span>
       </p>
       <!-- Add Movie Form -->
       <AddMovieForm
