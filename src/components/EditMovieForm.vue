@@ -28,7 +28,7 @@ const { title, director, year, rate } = toRefs(formData);
 const yearLimits = [1900, 2200];
 const rules = {
   title: { required, maxLength: maxLength(200) },
-  year: { required, between: between(...yearLimits)  },
+  year: { required, between: between(...yearLimits) },
 };
 const v$ = useVuelidate(rules, formData);
 const setRating = (rating) => {
