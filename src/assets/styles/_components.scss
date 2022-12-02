@@ -33,16 +33,15 @@
 }
 
 // Scroll On Top Button
-.scroll_on_top{
+.scroll_on_top {
   position: fixed;
   bottom: 0;
-  right: .5rem;
-  background: rgba(255,255,255, .2);
+  right: 0.5rem;
+  background: rgba(255, 255, 255, 0.2);
   border: none;
   border-radius: 5px;
   z-index: 10;
 }
-
 
 // Table
 table {
@@ -61,6 +60,9 @@ thead {
 .table > :not(caption) > * > * {
   border-bottom-width: 0px;
   min-width: 85px;
+}
+tbody {
+  font-family: "Old Standard TT", serif;
 }
 
 // Star Rating
@@ -94,6 +96,10 @@ thead {
   @media screen and (max-width: 748px) {
     justify-content: space-around;
   }
+}
+.form-control,
+#star-rating {
+  font-family: "Old Standard TT", serif;
 }
 
 // No Movies
