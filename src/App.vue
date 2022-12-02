@@ -3,6 +3,7 @@ import { RouterView } from "vue-router";
 import { reactive } from "vue";
 import Alert from "./components/AlertVue.vue";
 import Header from "./components/HeaderVue.vue";
+import ScrollToTop from "./components/ScrollToTop.vue";
 
 const alertData = reactive({
   alert: "warning",
@@ -30,6 +31,7 @@ const setAlertData = (alert, message, visible) => {
     </Transition>
     <Header />
     <RouterView :setAlertData="setAlertData" />
+    <ScrollToTop />
   </article>
 </template>
 
