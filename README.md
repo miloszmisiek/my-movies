@@ -1,5 +1,7 @@
 # <div align='center'> My Movies App :clapper:</div><!-- omit in toc -->
 
+## <img align="center" src="./src/assets/images/amiresponsive.png" alt="My Movies Am I Responsive Image" style="max-width='100%'"> <!-- omit in toc -->
+
 ## Table of Contents <!-- omit in toc -->
 
 - [**Overview**](#overview)
