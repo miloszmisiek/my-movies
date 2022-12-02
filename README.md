@@ -2,8 +2,9 @@
 
 ## <img align="center" src="./src/assets/images/amiresponsive.png" alt="My Movies Am I Responsive Image" style="max-width='100%'"> <!-- omit in toc -->
 
-## Table of Contents <!-- omit in toc -->
+## Table of Contents 
 
+- [Table of Contents](#table-of-contents)
 - [**Overview**](#overview)
   - [Production](#production)
   - [Development](#development)
