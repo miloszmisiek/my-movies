@@ -25,9 +25,10 @@ const initialState = {
 };
 const formData = reactive({ ...initialState });
 const { title, director, year, rate } = toRefs(formData);
+const yearLimits = [1900, 2200];
 const rules = {
   title: { required, maxLength: maxLength(200) },
-  year: { required, between: between(1900, 2200) },
+  year: { required, between: between(...yearLimits)  },
 };
 const v$ = useVuelidate(rules, formData);
 const setRating = (rating) => {
@@ -93,14 +94,12 @@ onMounted(() => {
     </div>
     <!-- Director -->
     <BaseInput v-model="director" label="Director" />
-    <!-- Year -->
     <BaseInput
       v-model="year"
       type="number"
       label="Year"
       :class="!!v$.year.$errors.length ? 'error' : undefined"
     />
-    <!-- Year Errors Handler -->
     <!-- Year Errors Handler -->
     <div
       class="text-danger mb-2"
