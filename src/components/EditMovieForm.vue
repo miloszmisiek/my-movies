@@ -27,7 +27,7 @@ const formData = reactive({ ...initialState });
 const { title, director, year, rate } = toRefs(formData);
 const rules = {
   title: { required, maxLength: maxLength(200) },
-  year: { between: between(1900, 2200) },
+  year: { required, between: between(1900, 2200) },
 };
 const v$ = useVuelidate(rules, formData);
 const setRating = (rating) => {
@@ -101,17 +101,14 @@ onMounted(() => {
       :class="!!v$.year.$errors.length ? 'error' : undefined"
     />
     <!-- Year Errors Handler -->
+    <!-- Year Errors Handler -->
     <div
       class="text-danger mb-2"
       role="alert"
       v-for="error in v$.year.$errors"
       :key="error.$uid"
     >
-      {{
-        error.$validator === "required"
-          ? `${error.$params.max}`
-          : error.$message
-      }}
+      {{ `The value must be between ${yearLimits[0]} and ${yearLimits[1]} ` }}
     </div>
     <!-- Rate -->
     <label for="star-rating">Rate</label>
