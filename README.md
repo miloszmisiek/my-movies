@@ -76,6 +76,8 @@ The devolpment version uses **'in memory database'** for testing purpose - built
 
 ## **How to use?**
 
+Open the app by navigating to **[this](https://enchanting-ganache-56f1cf.netlify.app/)** page.
+
 1. To add a movie click on the green button above the table.
 2. To fetch movies click on the blue cloud button above the table.
 
