@@ -13,11 +13,10 @@
 - [**Bugs**](#bugs)
   - [default-passive-events warning](#default-passive-events-warning)
 - [**Credits**](#credits)
-- [**Acknowledgments**](#acknowledgments)
 
 ## **Overview**
 
-This project serves as a **Junior Software Developer** recruitment task for [Software Studio](https://www.softwarestudio.com.pl/). It is a simple web application for displaying custom movies list in tabular format. The app allows for full CRUD functionality and allows users to download movies from an external API endpoint [here](https://filmy.programdemo.pl/swagger/index.html).
+A simple web application for displaying custom movies list in tabular format. The app allows for full CRUD functionality and allows users to download movies from an external API endpoint [here](https://filmy.programdemo.pl/swagger/index.html).
 
 The app is fully responsive and was tested on different screen sizes.
 
@@ -131,13 +130,6 @@ It is left because the previous warnings are gone, so the final result is achiev
 
 1. All fonts come from [Google Fonts](https://fonts.google.com/).
 2. The movie clapper logo comes from [cleanpng.com](https://www.cleanpng.com/png-clapperboard-filmmaking-celebrity-production-compa-6341315/)
-
-[Back to contents](#table-of-contents)
-
-## **Acknowledgments**
-
-1. **[Software Studio](https://www.softwarestudio.com.pl/) Recruitment Team** - for giving me a chance to improve my skills by doing this task - regardless of the outcome it was a great experience for self-development. Thank you!
-2. As always big thanks to [Stack Overflow](https://stackoverflow.com/) community for the best bug-solving space ever created!
 
 [Back to contents](#table-of-contents)
 
